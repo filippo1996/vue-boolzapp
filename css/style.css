@@ -7,8 +7,263 @@
 
 body{
     font-family: 'Roboto', sans-serif;
+    background: rgb(219,219,212);
+    height: 100vh;
 }
 
 [v-cloak]{
     display: none;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.d-block{
+    display: block;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+.justify-around{
+    justify-content: space-around;
+}
+
+.height-100{
+    height: 100%;
+}
+
+.img-user{
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user-name{
+    display: inline-block;
+}
+
+.align-middle{
+    vertical-align: middle;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.align-top{
+    vertical-align: top;
+}
+
+.link{
+    color: rgb(103, 138, 158);
+}
+
+.list{
+    list-style: none;
+}
+
+.m-left{
+    margin-left: 15px;
+}
+
+/* header top */
+header.top{
+    height: 100px;
+    background: rgb(65, 148, 136);
+}
+
+
+/* main */
+.container{
+    display: flex;
+    width: 80%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    height: 95%;
+}
+
+.container-contacts{
+    min-width: 400px;
+    width: 400px;
+}
+
+.container-messages{
+    width: 100%;
+}
+
+header{
+    height: 80px;
+    background: rgb(234, 234, 234);
+    padding: 10px;
+}
+
+header.contacts{
+    border-right: 1px solid rgb(218, 218, 218);
+}
+
+.container-icons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-basis: 30%;
+}
+
+.container-icons > i{
+    color: rgb(177,177,177);
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.notice-message{
+    height: 90px;
+    background: rgb(158, 216, 248);
+    padding: 10px;
+}
+
+.bell-slash{
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 18px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.bell-slash i{
+    font-size: 30px;
+    color: rgb(158, 216, 248);
+}
+
+.container-link-notice{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+    line-height: 1.3;
+}
+
+.search-contacts{
+    height: 70px;
+    background: rgb(250, 250, 250);
+    padding: 10px;
+    color: rgb(185,186,187);
+}
+
+.ico-search{
+    display: inline-block;
+    padding: 15px;
+    background: white;
+    border-right: 1px solid rgb(243, 241, 241);
+}
+
+.search-contacts input{
+    padding: 16px;
+    background: white;
+    border: 0;
+    width: 86%;
+}
+
+.show-contacts{
+    background: white;
+    height: calc(100% - 240px);
+    overflow-y: scroll;
+    padding: 10px 0;
+}
+
+.contact-user{
+    height: 70px;
+    padding: 5px;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(241, 240, 240);
+}
+
+.contact-user:hover{
+    background-color: rgb(245, 245, 245);
+}
+
+.contact-user:last-child{
+    border-bottom: 0;
+}
+
+.card-user{
+    padding: 0 20px;
+}
+
+.messages{
+    background: url(../img/mine.jpg);
+    height: calc(100% - 80px);
+
+
+
+
+    position: relative;
+}
+
+.bar-message{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgb(242, 238, 234);
+    height: 80px;
+    width: 100%;
+}
+
+.emoji-message{
+    margin-left: 30px;
+}
+
+.input-message{
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    border: 0;
+}
+
+.voice-note{
+    margin-right: 30px;
+}
+
+.emoji-message i,
+.voice-note i{
+    color: rgb(108,115,117);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.messages .list{
+    height: calc(100% - 80px);
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+.message{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.message.send{
+    flex-direction: row-reverse;
+}
+
+.message.received{
+    flex-direction: row;
+}
+
+.card-message{
+    max-width: 300px;
+    min-height: 30px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.send .card-message{
+    background: #ddf7c8;
+}
+
+.received .card-message{
+    background: white;
 }

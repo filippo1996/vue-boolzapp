@@ -50,34 +50,18 @@
                     </label>
                     <input id="user-search" type="text" placeholder="Cerca o inizia una nuova chat">
                 </div>
+                <!-- start show list contacts -->
                 <div class="show-contacts">
                     <ul class="list">
-                        <li class="contact-user">
+                        <li v-for="contact in contacts" class="contact-user">
                             <div class="card-user height-100">
-                                <img class="img-user align-top" src="img/avatar_1.jpg" alt="user">
-                                <h4 class="user-name m-left">Michele</h4>
-                            </div>
-                        </li>
-                        <li class="contact-user">
-                            <div class="card-user height-100">
-                                <img class="img-user align-top" src="img/avatar_2.jpg" alt="user">
-                                <h4 class="user-name m-left">Fabio</h4>
-                            </div>
-                        </li>
-                        <li class="contact-user">
-                            <div class="card-user height-100">
-                                <img class="img-user align-top" src="img/avatar_3.jpg" alt="user">
-                                <h4 class="user-name m-left">Samuele</h4>
-                            </div>
-                        </li>
-                        <li class="contact-user">
-                            <div class="card-user height-100">
-                                <img class="img-user align-top" src="img/avatar_4.jpg" alt="user">
-                                <h4 class="user-name m-left">Luisa</h4>
+                                <img class="img-user align-top" :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                                <h4 class="user-name m-left" v-cloak>{{contact.name}}</h4>
                             </div>
                         </li>
                     </ul>
                 </div>
+                <!-- end show list contacts -->
             </div>
             <!-- end container contacts -->
 

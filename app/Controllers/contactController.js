@@ -13,7 +13,13 @@ const app = new Vue(
     {
         el: '#app',
         data: {
-            contacts
+            contacts,
+            contact: contacts[0]
+        },
+        methods: {
+            showMessages: function(index){
+                this.contact = this.contacts[index];
+            }
         }
     }
 );

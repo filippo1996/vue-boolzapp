@@ -53,7 +53,7 @@
                 <!-- start show list contacts -->
                 <div class="show-contacts">
                     <ul class="list">
-                        <li v-for="contact in contacts" class="contact-user">
+                        <li v-for="(contact, index) in contacts" @click="showMessages(index)" class="contact-user">
                             <div class="card-user height-100">
                                 <img class="img-user align-top" :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                                 <h4 class="user-name m-left" v-cloak>{{contact.name}}</h4>
@@ -69,9 +69,9 @@
             <div class="container-messages height-100">
                 <header class="d-flex justify-between">
                     <div class="user d-flex align-center">
-                        <img class="img-user align-middle" src="img/avatar_1.jpg" alt="admin">
+                        <img class="img-user align-middle" :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                         <div class="info-user m-left">
-                            <h4 class="user-name">Michele</h4>
+                            <h4 class="user-name" v-cloak>{{contact.name}}</h4>
                             <span class="d-block">Ultimo accesso oggi alle</span>
                         </div>
                     </div>
@@ -83,19 +83,10 @@
                 </header>
                 <div class="messages">
                     <div class="list">
-                        <div class="message send">
+                        <div v-for="message in contact.messages" :class="'message ' + message.status">
                             <div class="card-message">
-                                <p>hello world!</p>
-                            </div>
-                        </div>
-                        <div class="message received">
-                            <div class="card-message">
-                                <p>hello world!</p>
-                            </div>
-                        </div>
-                        <div class="message received">
-                            <div class="card-message">
-                                <p>hello world!</p>
+                                <p v-cloak>{{message.text}}</p>
+                                <span class="date" v-cloak>{{message.date}}</span>
                             </div>
                         </div>
                     </div>

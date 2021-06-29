@@ -245,7 +245,7 @@ header.contacts{
     margin-bottom: 20px;
 }
 
-.message.send{
+.message.sent{
     flex-direction: row-reverse;
 }
 
@@ -260,10 +260,17 @@ header.contacts{
     border-radius: 10px;
 }
 
-.send .card-message{
+.sent .card-message{
     background: #ddf7c8;
 }
 
 .received .card-message{
     background: white;
+}
+
+.date{
+    display: block;
+    font-size: .6rem;
+    text-align: right;
+    margin-top: 10px;
 }

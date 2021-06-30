@@ -24,23 +24,12 @@ const app = new Vue(
         el: '#app',
         data: {
             contacts,
+            //contact: this.contact[0] //Non funziona
             contact: contacts[0],
             lastAccess: set.lastAccess(contacts[0]),
-            //contact: this.contact[0] //Non funziona
             message: '',
             listen: false,
-            receivedMessage: function(){
-                setTimeout(() => { 
-                    const obj = {
-                        date: dayjs().format('YYYY/MM/DD HH:mm:ss'),
-                        text: 'Testo statico di prova',
-                        status: 'received'
-                    }
-                    this.contact.messages.push(obj);
-                    this.listen = false;
-                    this.lastAccess = 'online';
-                }, 2000);
-            }
+            search: ''
 
         },
         methods: {
@@ -60,6 +49,29 @@ const app = new Vue(
                 this.message = '';
                 this.listen = true;
                 this.receivedMessage();
+            },
+            receivedMessage: function(){
+                setTimeout(() => { 
+                    const obj = {
+                        date: dayjs().format('YYYY/MM/DD HH:mm:ss'),
+                        text: 'Testo statico di prova',
+                        status: 'received'
+                    }
+                    this.contact.messages.push(obj);
+                    this.listen = false;
+                    this.lastAccess = 'online';
+                }, 2000);
+            }
+        },
+        computed: {
+            searchContact: {
+                get: function(){
+                    return this.search;
+                },
+                set: function(word){
+                    this.contacts = contacts.filter(obj => obj.name.toLowerCase().includes(word.toLowerCase()));
+                    this.search = word;
+                }
             }
         }
     }

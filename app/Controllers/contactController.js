@@ -15,7 +15,7 @@ const contacts = [
 const set = {
     lastAccess: function(obj){
         let date = obj.messages.filter(obj => obj.status === 'received');
-        return dayjs(date[date.length - 1].date).fromNow();
+        return dayjs(date[date.length - 1]?.date).fromNow();
     }
 }
 
@@ -61,6 +61,9 @@ const app = new Vue(
                     this.listen = false;
                     this.lastAccess = 'online';
                 }, 2000);
+            },
+            deleteMessage: function(index){
+                this.contact.messages.splice(index, 1);
             }
         },
         computed: {

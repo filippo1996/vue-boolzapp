@@ -68,6 +68,16 @@ body{
     margin-left: 15px;
 }
 
+.hidden{
+    display: none;
+}
+
+.clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
 /* header top */
 header.top{
     height: 100px;
@@ -196,10 +206,6 @@ header.contacts{
 .messages{
     background: url(../img/mine.jpg);
     height: calc(100% - 80px);
-
-
-
-
     position: relative;
 }
 
@@ -258,6 +264,28 @@ header.contacts{
     min-height: 30px;
     padding: 20px;
     border-radius: 10px;
+}
+
+.dropmenu{
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;
+    cursor: pointer;
+    position: relative;
+    float: right;
+}
+
+.curtain{
+    background: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.dropmenu:hover ul{
+    display: block;
 }
 
 .sent .card-message{

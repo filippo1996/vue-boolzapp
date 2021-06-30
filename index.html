@@ -72,7 +72,9 @@
                         <img class="img-user align-middle" :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                         <div class="info-user m-left">
                             <h4 class="user-name" v-cloak>{{contact.name}}</h4>
-                            <span class="d-block">Ultimo accesso oggi alle</span>
+                            <span v-if="!listen && lastAccess !== 'online'" class="d-block" v-cloak>Ultimo accesso {{lastAccess}}</span>
+                            <span v-else-if="!listen && lastAccess === 'online'" class="d-block" v-cloak>{{contact.name}} è online</span>
+                            <span v-else class="d-block" v-cloak>{{contact.name}} sta scrivendo...</span>
                         </div>
                     </div>
                     <div class="container-icons">
@@ -95,7 +97,7 @@
                         <div class="emoji-message">
                             <i class="far fa-smile"></i>
                         </div>
-                        <input class="input-message" type="text" placeholder="Scrivi un messaggio">
+                        <input class="input-message" type="text" placeholder="Scrivi un messaggio" v-model="message" @keyup.enter="sendMessage">
                         <div class="voice-note">
                             <i class="fas fa-microphone"></i>
                         </div>
@@ -110,6 +112,9 @@
 
     <!-- script vue js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- script date -->
+    <script src="https://unpkg.com/dayjs@1.10.5/dayjs.min.js"></script>
+    <script src="https://unpkg.com/dayjs@1.10.5/plugin/relativeTime.js"></script>
     <!-- script js -->
     <script type="module" src="app/Controllers/contactController.js"></script>
 </body>

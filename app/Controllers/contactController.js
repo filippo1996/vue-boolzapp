@@ -1,4 +1,5 @@
 import Contact from "./../Models/Contact.js";
+import message from "./../Models/Message.js";
 
 //Script date + plugin
 dayjs.extend(window.dayjs_plugin_relativeTime);
@@ -12,28 +13,48 @@ let contacts = [
 
 //console.log(contacts);
 
+/**
+ * Funzione che recupera il valore dalla local storage
+ */
 const contactsLocalStorage = () => {
+    //Leggiamo la chiave contacts situata in local storage
     const localContacts = localStorage.getItem('contacts');
-    if(localContacts){
-        const contactsArr = JSON.parse(localContacts);
-        if(contactsArr){
+    if(localContacts){ //Verifichiamo che esista
+        //Se esiste parsifichiamo l'oggetto JSON in array di oggetti javascript
+        const contactsArr = JSON.parse(localContacts); 
+        if(contactsArr){ //Verifichiamo che la parsificazione non restituisca null
+            //Passiamo l'array parsificato alla variabile contacts per gestire tutta la logica del programma
             contacts = contactsArr;
         }
     }
 };
 
+/**
+ * Funzione che salva il valore nella Local Storage
+ */
 const saveContactLocalStorage = () => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
 };
 
 
-const set = {
+//Oggetto con metodi
+const get = {
     lastAccess: function(obj){
         let date = obj.messages.filter(obj => obj.status === 'received');
         return dayjs(date[date.length - 1]?.date).fromNow();
+    },
+    randomNumber: function(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+    scrollChat: function(time = 0){
+        setTimeout(() =>{
+            const scroll = document.getElementById('scroll');
+            scroll.scrollTop = scroll.scrollHeight;
+        }, time);
     }
 }
 
+//A ogni aggiornamento recuperiamo il valore dalla local storage
 contactsLocalStorage();
 
 const app = new Vue(
@@ -43,17 +64,22 @@ const app = new Vue(
             contacts,
             //contact: this.contact[0] //Non funziona
             contact: contacts[0],
-            lastAccess: set.lastAccess(contacts[0]),
+            lastAccess: get.lastAccess(contacts[0]),
             message: '',
             listen: false,
             search: ''
 
         },
+        mounted(){
+            //A ogni aggiornamento scrolliamo i messaggi in fondo la pagina
+            get.scrollChat(100);
+        },
         methods: {
             showMessages: function(index){
                 this.contact = this.contacts[index];
-                //Set last date
-                this.lastAccess = set.lastAccess(this.contact);
+                get.scrollChat(100);
+                //get last date
+                this.lastAccess = get.lastAccess(this.contact);
             },
             sendMessage: function(){
                 const obj = {
@@ -63,6 +89,7 @@ const app = new Vue(
                 }
 
                 this.contact.messages.push(obj);
+                get.scrollChat(100);
                 //Save obj in local storage
                 saveContactLocalStorage();
                 this.message = '';
@@ -73,10 +100,11 @@ const app = new Vue(
                 setTimeout(() => { 
                     const obj = {
                         date: dayjs().format('YYYY/MM/DD HH:mm:ss'),
-                        text: 'Testo statico di prova',
+                        text: message(get.randomNumber),
                         status: 'received'
                     }
                     this.contact.messages.push(obj);
+                    get.scrollChat(100);
                     //Save obj in local storage
                     saveContactLocalStorage();
                     this.listen = false;

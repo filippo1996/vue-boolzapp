@@ -46,11 +46,9 @@ const get = {
     randomNumber: function(min, max){
         return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    scrollChat: function(time = 0){
-        setTimeout(() =>{
-            const scroll = document.getElementById('scroll');
-            scroll.scrollTop = scroll.scrollHeight;
-        }, time);
+    scrollChat: function(){
+        const scroll = document.getElementById('scroll');
+        scroll.scrollTop = scroll.scrollHeight;
     }
 }
 
@@ -70,14 +68,17 @@ const app = new Vue(
             search: ''
 
         },
-        mounted(){
+        updated(){
             //A ogni aggiornamento scrolliamo i messaggi in fondo la pagina
-            get.scrollChat(100);
+            get.scrollChat();
+        },
+        mounted(){
+            //Al primo caricamento della pagina scrolliamo i messaggi in fondo la pagina
+            get.scrollChat();
         },
         methods: {
             showMessages: function(index){
                 this.contact = this.contacts[index];
-                get.scrollChat(100);
                 //get last date
                 this.lastAccess = get.lastAccess(this.contact);
             },
@@ -89,7 +90,6 @@ const app = new Vue(
                 }
 
                 this.contact.messages.push(obj);
-                get.scrollChat(100);
                 //Save obj in local storage
                 saveContactLocalStorage();
                 this.message = '';
